@@ -35,8 +35,7 @@ export default function ImagesScreen() {
               onPress={async () => {
                 try {
                   await singleFileUploader({
-                    distantUrl:
-                      "https://wildstagram.nausicaa.wilders.dev/upload",
+                    distantUrl: "https://wildstagram.nausicaa.wilders.dev/test",
                     filename: itemData.item,
                     filetype: "image/jpeg",
                     formDataName: "fileData",
@@ -44,6 +43,7 @@ export default function ImagesScreen() {
                       FileSystem.cacheDirectory +
                       "ImageManipulator/" +
                       itemData.item,
+                    token: "testtoken",
                   });
                   alert("Uploaded");
                 } catch (err) {
