@@ -1,7 +1,10 @@
 import * as FileSystem from "expo-file-system";
+import Constants from "expo-constants";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Image, FlatList, Button } from "react-native";
 import singleFileUploader from "single-file-uploader";
+
+const token = Constants.manifest.extra.token;
 
 export default function ImagesScreen() {
   const [imagesURI, setImagesURI] = useState([]);
@@ -35,7 +38,9 @@ export default function ImagesScreen() {
               onPress={async () => {
                 try {
                   await singleFileUploader({
-                    distantUrl: "https://wildstagram.nausicaa.wilders.dev/test",
+                    distantUrl:
+                      "https://wildstagram.nausicaa.wilders.dev/upload",
+                    expectedStatusCode: 201,
                     filename: itemData.item,
                     filetype: "image/jpeg",
                     formDataName: "fileData",
@@ -43,7 +48,7 @@ export default function ImagesScreen() {
                       FileSystem.cacheDirectory +
                       "ImageManipulator/" +
                       itemData.item,
-                    token: "testtoken",
+                    token: token,
                   });
                   alert("Uploaded");
                 } catch (err) {
