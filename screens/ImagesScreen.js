@@ -4,8 +4,6 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Image, FlatList, Button } from "react-native";
 import singleFileUploader from "single-file-uploader";
 
-const token = Constants.manifest.extra.token;
-
 export default function ImagesScreen() {
   const [imagesURI, setImagesURI] = useState([]);
   useEffect(() => {
@@ -48,7 +46,7 @@ export default function ImagesScreen() {
                       FileSystem.cacheDirectory +
                       "ImageManipulator/" +
                       itemData.item,
-                    token: token,
+                    token: Constants.manifest.extra.token,
                   });
                   alert("Uploaded");
                 } catch (err) {
